@@ -11,79 +11,85 @@ namespace ex12
     {
         static void Main(string[] args)
         {
-            const string CommandBack = "back";
-            const string CommandChooseRace = "setrace";
-            const string CommandChooseClassification = "setclass";
-            const string CommandEnterLvl = "setlvl";
-            const string CommandEnterName = "setname";
+            const string CommandExit = "exit";
+            const string CommandRandom = "random";
+            const string CommandClear = "clear";
+            const string CommandAge = "age";
+            const string CommandYear = "year";
+            const string CommandPredict = "predict";
 
             bool isOpen = true;
-            bool isCreateCharacter = true;
-            string race = "";
-            int level = 0;
-            string name = "";
-            string classification = "";
+            int age = 0;
+            int maxAge = 101;
+            int currentYear = 2023;
 
             while (isOpen)
             {
-                Console.WriteLine($"Dungeon&Dragons\n");
-                Console.WriteLine($"Ваш персонаж\nИмя: {name}\nРаса: {race}\nКласс: " +
-                    $"{classification}\nУровень: {level}");
-                Console.WriteLine("\nХотите создать нового персонажа?\n+ да\n- закрыть программу\n");
+                Console.WriteLine($"{CommandAge} - ввести возраст\n{CommandYear} - расчитать год\n" +
+                    $"{CommandRandom} - вывести случайное число\n{CommandPredict} - предсказать будущее\n" +
+                    $"{CommandClear} - очистить консоль\n" +
+                    $"{CommandExit} - выход из программы");
                 Console.Write("Введите команду: ");
-                char choiceCreate = Convert.ToChar(Console.ReadLine());
+                string chosenOperation = Console.ReadLine();
 
-                if (choiceCreate == '+')
+                switch (chosenOperation)
                 {
-                    isCreateCharacter = true;
+                    case CommandAge:
+                        Console.Write("\nВведите возраст: ");
+                        age = Convert.ToInt32(Console.ReadLine());
+                        break;
+                    case CommandYear:
 
-                    while (isCreateCharacter)
-                    {
-                        Console.WriteLine($"\nSetName - ввести имя персонажа\nSetRace - ввести расу персонажа" +
-                            $"\nSetClass - ввести класс персонажа\nSetLvl - ввести уровень персонажа\nBack - вернуться в начальное меню\n");
-                        Console.Write("Введите команду: ");
-                        string chosenOperation = Console.ReadLine();
-
-                        switch (chosenOperation.ToLower())
+                        if (age != 0)
                         {
-                            case CommandEnterName:
-                                Console.Write("Введите имя персонажа: ");
-                                name = Console.ReadLine();
-                                break;
-                            case CommandEnterLvl:
-                                Console.Write("Введите свой уровень: ");
-                                level = Convert.ToInt32(Console.ReadLine());
-                                break;
-                            case CommandChooseClassification:
-                                Console.Write("Введите свой класс: ");
-                                classification = Console.ReadLine();
-                                break;
-                            case CommandChooseRace:
-                                Console.Write("Введите свою расу: ");
-                                race = Console.ReadLine();
-                                break;
-                            case CommandBack:
-                                isCreateCharacter = false;
-                                break;
-                            default:
-                                Console.WriteLine("Неверная команда. Попробуйте еще раз.");
-                                break;
+                            Console.Write("\nВведите год: ");
+                            int year = Convert.ToInt32(Console.ReadLine());
+                            int ageInYear = year - currentYear + age;
+                            Console.WriteLine($"В {year} году вам будет {ageInYear} лет!\n");
+                            Console.ReadKey();
                         }
-                    }
-                }
-                else if (choiceCreate == '-')
-                {
-                    isOpen = false;
-                }
-                else
-                {
-                    Console.WriteLine("Неверная команда. Попробуйте еще раз.");
-                    Console.ReadKey();
-                }
+                        else
+                        {
+                            Console.WriteLine("\nВы еще не ввели свой возраст\n");
+                        }
+                        break;
+                    case CommandRandom:
+                        Console.Write("Введите минимальное число: ");
+                        int minValue = Convert.ToInt32(Console.ReadLine());
+                        Console.Write("Введите максимальное число: ");
+                        int maxValue = Convert.ToInt32(Console.ReadLine());
+                        Random randomValue = new Random();
+                        int value = randomValue.Next(minValue, maxValue + 1);
+                        Console.WriteLine($"Случайное число: {value}");
+                        Console.ReadKey();
+                        break;
+                    case CommandPredict:
 
+                        if (age != 0)
+                        {
+                            Random randomAge = new Random();
+                            Console.WriteLine("\nПродолжите текст");
+                            Console.Write("В каком возрасте я... ");
+                            string prediction = Console.ReadLine();
+                            int predictedAge = randomAge.Next(age, maxAge);
+                            Console.WriteLine($"Я {prediction} в {predictedAge} лет");
+                            Console.ReadKey();
+                        }
+                        else
+                        {
+                            Console.WriteLine("\nСначала введите свой возраст\n");
+                        }
+                        break;
+                    case CommandClear:
+                        Console.Clear();
+                    case CommandExit:
+                        isOpen = false;
+                        break;
+                    default:
+                        Console.WriteLine("\nВведена неверная команда. Попробуйте еще раз\n");
+                        break;
+                }
             }
-
-
         }
     }
 }
