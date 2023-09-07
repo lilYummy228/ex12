@@ -38,6 +38,7 @@ namespace ex12
                         Console.Write("\nВведите возраст: ");
                         age = Convert.ToInt32(Console.ReadLine());
                         break;
+
                     case CommandYear:
 
                         if (age != 0)
@@ -53,6 +54,7 @@ namespace ex12
                             Console.WriteLine("\nВы еще не ввели свой возраст\n");
                         }
                         break;
+
                     case CommandRandom:
                         Console.Write("Введите минимальное число: ");
                         int minValue = Convert.ToInt32(Console.ReadLine());
@@ -63,6 +65,7 @@ namespace ex12
                         Console.WriteLine($"Случайное число: {value}");
                         Console.ReadKey();
                         break;
+
                     case CommandPredict:
 
                         if (age != 0)
@@ -80,11 +83,15 @@ namespace ex12
                             Console.WriteLine("\nСначала введите свой возраст\n");
                         }
                         break;
+
                     case CommandClear:
                         Console.Clear();
+                        break;
+
                     case CommandExit:
                         isOpen = false;
                         break;
+
                     default:
                         Console.WriteLine("\nВведена неверная команда. Попробуйте еще раз\n");
                         break;
