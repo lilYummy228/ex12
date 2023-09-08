@@ -53,6 +53,7 @@ namespace ex12
                         {
                             Console.WriteLine("\nВы еще не ввели свой возраст\n");
                         }
+
                         break;
 
                     case CommandRandom:
@@ -82,6 +83,7 @@ namespace ex12
                         {
                             Console.WriteLine("\nСначала введите свой возраст\n");
                         }
+
                         break;
 
                     case CommandClear:
