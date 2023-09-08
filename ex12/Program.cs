@@ -40,7 +40,6 @@ namespace ex12
                         break;
 
                     case CommandYear:
-
                         if (age != 0)
                         {
                             Console.Write("\nВведите год: ");
@@ -68,7 +67,6 @@ namespace ex12
                         break;
 
                     case CommandPredict:
-
                         if (age != 0)
                         {
                             Random randomAge = new Random();
